@@ -28,8 +28,19 @@ jobs:
       
     - name: Build with Gradle
       run: ./gradlew build
-      
+
+    - run: |
+        md5sum app/build/outputs/apk/release/app-release-unsigned.apk > md5sums
+        sha1sum app/build/outputs/apk/release/app-release-unsigned.apk > sha1sums
+        sha256sum app/build/outputs/apk/release/app-release-unsigned.apk > sha256sums
+        sha384sum app/build/outputs/apk/release/app-release-unsigned.apk > sha384sums
+        sha512sum app/build/outputs/apk/release/app-release-unsigned.apk > sha512sums
+        
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: app/build
+        path: |
+          app/build/outputs/apk/release/app-release-unsigned.apk
+          *sums
+          
+        retention-days: 90
