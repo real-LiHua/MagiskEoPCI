@@ -32,6 +32,6 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: |
-          app/build/outputs/apk/release/app-release-unsigned.apk
+        name: MagiskEoP
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
         retention-days: 90
